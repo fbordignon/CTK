@@ -81,8 +81,9 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
   endif()
 
   ctkFunctionExtractOptimizedLibrary(PYTHON_LIBRARIES PYTHON_LIBRARY)
-  if(CTK_QT_VERSION VERSION_EQUAL "5")
-    set(revision_tag c4a5a155b2942d4b003862c3317105b4a1ea6755) # patched-9
+
+  if (CTK_QT_VERSION VERSION_GREATER "4")
+    set(revision_tag 263f45959fbfed4e2679e5fb4be8e0c4f4e1accb) # LTrace pythonqt sanitycheck for pyside2 connection
   else()
     message(FATAL_ERROR "Support for Qt${CTK_QT_VERSION} is not implemented")
   endif()
@@ -98,7 +99,7 @@ if(NOT DEFINED PYTHONQT_INSTALL_DIR)
     set(location_args GIT_REPOSITORY ${${proj}_GIT_REPOSITORY}
                       GIT_TAG ${revision_tag})
   else()
-    set(location_args GIT_REPOSITORY "https://github.com/commontk/PythonQt.git"
+    set(location_args GIT_REPOSITORY "${EP_GIT_PROTOCOL}://github.com/fbordignon/PythonQt.git"
                       GIT_TAG ${revision_tag})
   endif()
 
